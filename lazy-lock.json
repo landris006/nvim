@@ -1,0 +1,11 @@
+{
+  "copilot.vim": { "branch": "release", "commit": "309b3c803d1862d5e84c7c9c5749ae04010123b8" },
+  "lazy.nvim": { "branch": "main", "commit": "96584866b9c5e998cbae300594d0ccfd0c464627" },
+  "lualine.nvim": { "branch": "master", "commit": "2248ef254d0a1488a72041cfb45ca9caada6d994" },
+  "mason-lspconfig.nvim": { "branch": "main", "commit": "faeb361507aa1ef1b0e5645781e2aa0d36a4aa84" },
+  "mason.nvim": { "branch": "main", "commit": "41e75af1f578e55ba050c863587cffde3556ffa6" },
+  "nvim-lspconfig": { "branch": "master", "commit": "d5d7412ff267b92a11a94e6559d5507c43670a52" },
+  "nvim-treesitter": { "branch": "master", "commit": "8b9f99660294dcd11d42572c84ee33a1e284f70d" },
+  "nvim-web-devicons": { "branch": "master", "commit": "11eb26fc166742db8d1e8a6f5a7de9df37b09aae" },
+  "tokyonight.nvim": { "branch": "main", "commit": "f247ee700b569ed43f39320413a13ba9b0aef0db" }
+}
