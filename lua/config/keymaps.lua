@@ -18,10 +18,6 @@ vim.keymap.set("n", "<C-Down>", ":resize +2<CR>", opts)
 vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
--- Naviagate buffers
-vim.keymap.set("n", "<S-l>", ":bnext<CR>", opts)
-vim.keymap.set("n", "<S-h>", ":bprevious<CR>", opts)
-
 -- Move text
 vim.keymap.set("n", "<A-j>", ":m .+1<CR>==")        -- move line up(n)
 vim.keymap.set("n", "<A-k>", ":m .-2<CR>==")        -- move line down(n)
