@@ -27,3 +27,12 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     end
   end,
 })
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+  pattern = { "tokyonight" },
+  callback = function()
+    for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
+      vim.api.nvim_set_hl(0, group, {})
+    end
+  end,
+})

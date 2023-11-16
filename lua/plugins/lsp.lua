@@ -1,29 +1,25 @@
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup('UserLspConfig', {}),
   callback = function(ev)
-    -- Enable completion triggered by <c-x><c-o>
-    vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
-
-    -- Buffer local mappings.
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
     local opts = { buffer = ev.buf }
+    vim.keymap.set('n', '<leader>li', "<cmd>LspInfo<cr>", opts)
+    vim.keymap.set('n', 'gl', function()
+      vim.diagnostic.open_float(nil, { scope = 'line' })
+    end, opts)
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+    vim.keymap.set('n', 'gI', vim.lsp.buf.implementation, opts)
     vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-    vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
-    vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
-    vim.keymap.set('n', '<space>wl', function()
+    vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts)
+    vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts)
+    vim.keymap.set('n', '<leader>wl', function()
       print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end, opts)
-    vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
-    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
-    vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
+    vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, opts)
+    vim.keymap.set('n', '<leader>lr', vim.lsp.buf.rename, opts)
+    vim.keymap.set({ 'n', 'v' }, '<leader>la', vim.lsp.buf.code_action, opts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-    vim.keymap.set('n', '<space>f', function()
-      vim.lsp.buf.format { async = true }
-    end, opts)
   end,
 })
 
@@ -40,11 +36,33 @@ return {
 
     opts = {
       automatic_installation = true,
-      ensure_installed = {},
+      ensure_installed = { "clangd", "cmake", "rust_analyzer" },
       handlers = {
         function(server_name)
-          require('lspconfig')[server_name].setup({
-
+          require('lspconfig')[server_name].setup({})
+        end,
+        ['clangd'] = function()
+          require('lspconfig').clangd.setup({
+            cmd = {
+              "clangd",
+              "--offset-encoding=utf-16",
+              "--compile-commands-dir=build",
+            },
+          })
+        end,
+        ['rust_analyzer'] = function()
+          require('lspconfig').rust_analyzer.setup({
+            settings = {
+              ['rust-analyzer'] = {
+                checkOnSave = {
+                  allFeatures = true,
+                  overrideCommand = {
+                    'cargo', 'clippy', '--workspace', '--message-format=json',
+                    '--all-targets', '--all-features'
+                  }
+                }
+              }
+            }
           })
         end,
       }
@@ -52,12 +70,18 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    dependencies = { "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" },
+    dependencies = {
+      { "folke/neodev.nvim", config = true },
+      "mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+    },
+
+    event = "BufReadPost",
   },
   {
     "github/copilot.vim",
 
-    event = "InsertEnter",
+    event = "BufReadPost",
     init = function()
       vim.g.copilot_no_tab_map = true
       vim.g.copilot_assume_mapped = true
