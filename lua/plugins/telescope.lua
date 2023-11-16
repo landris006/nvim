@@ -20,6 +20,7 @@ return {
       { "<leader>fb", "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>", desc = "Buffers" },
       { "<leader>ff", "<cmd>Telescope find_files<cr>",                               desc = "Find Files (root dir)" },
       { "<leader>fr", "<cmd>Telescope oldfiles<cr>",                                 desc = "Recent" },
+      { "<leader>fc", "<cmd>Telescope colorscheme enable_preview=true<cr>",          desc = "Colorscheme with preview" },
 
       { "<leader>ld", "<cmd>Telescope diagnostics bufnr=0<cr>",                      desc = "Document diagnostics" },
       { "<leader>lw", "<cmd>Telescope diagnostics<cr>",                              desc = "Workspace diagnostics" },
@@ -43,7 +44,6 @@ return {
       { "<leader>sm", "<cmd>Telescope marks<cr>",                                    desc = "Jump to Mark" },
       { "<leader>so", "<cmd>Telescope vim_options<cr>",                              desc = "Options" },
       { "<leader>sR", "<cmd>Telescope resume<cr>",                                   desc = "Resume" },
-      { "<leader>uC", "<cmd>Telescope colorscheme enable_preview=true<cr>",          desc = "Colorscheme with preview" },
     },
     opts = function()
       local actions = require("telescope.actions")
