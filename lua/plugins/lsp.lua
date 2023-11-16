@@ -46,7 +46,7 @@ return {
             cmd = {
               "clangd",
               "--offset-encoding=utf-16",
-              "--compile-commands-dir=build",
+              "--compile-commands-dir=target/debug",
             },
           })
         end,
