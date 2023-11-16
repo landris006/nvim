@@ -12,7 +12,7 @@ return {
       {
         "<leader>c",
         function()
-          require("bufferline").buf_kill()
+          require("config.utils").buf_kill()
         end,
         desc = "Close buffer"
       },
