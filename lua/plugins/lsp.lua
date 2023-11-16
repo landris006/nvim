@@ -33,13 +33,39 @@ return {
   },
   {
     "williamboman/mason-lspconfig.nvim",
-
+    dependencies = { "b0o/schemastore.nvim" },
     opts = {
       automatic_installation = true,
-      ensure_installed = { "clangd", "cmake", "rust_analyzer" },
+      ensure_installed = { "clangd", "cmake", "rust_analyzer", "jsonls", "yamlls" },
       handlers = {
         function(server_name)
           require('lspconfig')[server_name].setup({})
+        end,
+        ['jsonls'] = function(server_name)
+          require('lspconfig')[server_name].setup({
+            settings = {
+              json = {
+                schemas = require('schemastore').json.schemas(),
+                validate = { enable = true },
+              },
+            },
+          })
+        end,
+        ['yamlls'] = function(server_name)
+          require('lspconfig')[server_name].setup({
+            settings = {
+              yaml = {
+                hover = true,
+                completion = true,
+                validate = true,
+                schemaStore = {
+                  enable = true,
+                  url = "https://www.schemastore.org/api/json/catalog.json",
+                },
+                schemas = require("schemastore").yaml.schemas(),
+              },
+            },
+          })
         end,
         ['clangd'] = function()
           require('lspconfig').clangd.setup({
