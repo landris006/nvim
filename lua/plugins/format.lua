@@ -12,6 +12,7 @@ return {
       yaml = { "prettierd" },
       markdown = { "prettierd" },
       lua = { "stylua" },
+      cpp = { "clang_format" },
     },
     format_on_save = function()
       if vim.g.autoformat_disable then

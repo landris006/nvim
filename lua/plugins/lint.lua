@@ -9,10 +9,8 @@ return {
       typescriptreact = { "eslint_d" },
       html = { "eslint_d" },
       css = { "eslint_d" },
-      json = { "eslint_d" },
-      yaml = { "eslint_d" },
-      markdown = { "eslint_d" },
       lua = { "luacheck" },
+      cpp = { "cpplint" },
     }
   },
   config = function(_, opts)
