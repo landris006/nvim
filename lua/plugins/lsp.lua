@@ -44,6 +44,15 @@ return {
         function(server_name)
           require('lspconfig')[server_name].setup({})
         end,
+        ['tailwindcss'] = function(server_name)
+          require('lspconfig')[server_name].setup({
+            root_dir = require('lspconfig.util').root_pattern(
+              "tailwind.config.js",
+              "tailwind.config.cjs",
+              "postcss.config.js"
+            ),
+          })
+        end,
         ['jsonls'] = function(server_name)
           require('lspconfig')[server_name].setup({
             settings = {
