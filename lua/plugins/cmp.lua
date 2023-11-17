@@ -10,7 +10,6 @@ return {
       "saadparwaiz1/cmp_luasnip",
     },
     opts = function()
-      vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
       local cmp = require("cmp")
       local defaults = require("cmp.config.default")()
       return {
@@ -22,6 +21,10 @@ return {
             require("luasnip").lsp_expand(args.body)
           end,
         },
+        window = {
+          completion = cmp.config.window.bordered(),
+          documentation = cmp.config.window.bordered()
+        },
         mapping = cmp.mapping.preset.insert({
           ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
           ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
@@ -29,7 +32,7 @@ return {
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<C-e>"] = cmp.mapping.abort(),
-          ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+          ["<CR>"] = cmp.mapping.confirm({ select = true }),
           ["<Tab>"] = cmp.mapping.confirm({ select = true }),
           ["<S-Tab>"] = cmp.mapping(function(fallback)
             cmp.mapping.abort()
@@ -49,11 +52,6 @@ return {
           {
             { name = "buffer" },
           }),
-        experimental = {
-          ghost_text = {
-            hl_group = "CmpGhostText",
-          },
-        },
         sorting = defaults.sorting,
       }
     end,
@@ -81,19 +79,19 @@ return {
       delete_check_events = "TextChanged",
     },
     -- stylua: ignore
-    keys = {
-      {
-        "<tab>",
-        function()
-          return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
-        end,
-        expr = true,
-        silent = true,
-        mode = "i",
-      },
-      { "<tab>",   function() require("luasnip").jump(1) end,  mode = "s" },
-      { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
-    },
+    -- keys = {
+    --   {
+    --     "<tab>",
+    --     function()
+    --       return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
+    --     end,
+    --     expr = true,
+    --     silent = true,
+    --     mode = "i",
+    --   },
+    --   { "<tab>",   function() require("luasnip").jump(1) end,  mode = "s" },
+    --   { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
+    -- },
   },
   {
     "echasnovski/mini.pairs",
