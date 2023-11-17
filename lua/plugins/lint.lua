@@ -3,12 +3,12 @@ return {
 
   event = { "BufReadPost", "BufNewFile" },
   opts = {
-    events = { "BufEnter", "BufWritePost", "InsertLeave" },
+    events = { "BufReadPost", "BufWritePost", "InsertLeave", "BufNewFile" },
     linters_by_ft = {
-      typescript = { "eslint_d" },
-      typescriptreact = { "eslint_d" },
-      html = { "eslint_d" },
-      css = { "eslint_d" },
+      typescript = { "eslint" },
+      typescriptreact = { "eslint" },
+      html = { "eslint" },
+      css = { "eslint" },
       lua = { "luacheck" },
       cpp = { "cpplint" },
     }
