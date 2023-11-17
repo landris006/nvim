@@ -37,74 +37,85 @@ return {
   {
     "williamboman/mason-lspconfig.nvim",
     dependencies = { "b0o/schemastore.nvim" },
-    opts = {
-      automatic_installation = true,
-      ensure_installed = { "clangd", "cmake", "rust_analyzer", "jsonls", "yamlls" },
-      handlers = {
-        function(server_name)
-          require('lspconfig')[server_name].setup({})
-        end,
-        ['tailwindcss'] = function(server_name)
-          require('lspconfig')[server_name].setup({
-            root_dir = require('lspconfig.util').root_pattern(
-              "tailwind.config.js",
-              "tailwind.config.cjs",
-              "postcss.config.js"
-            ),
-          })
-        end,
-        ['jsonls'] = function(server_name)
-          require('lspconfig')[server_name].setup({
-            settings = {
-              json = {
-                schemas = require('schemastore').json.schemas(),
-                validate = { enable = true },
-              },
-            },
-          })
-        end,
-        ['yamlls'] = function(server_name)
-          require('lspconfig')[server_name].setup({
-            settings = {
-              yaml = {
-                hover = true,
-                completion = true,
-                validate = true,
-                schemaStore = {
-                  enable = true,
-                  url = "https://www.schemastore.org/api/json/catalog.json",
+    opts = function()
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+      return {
+        automatic_installation = true,
+        ensure_installed = { "clangd", "cmake", "rust_analyzer", "jsonls", "yamlls" },
+        handlers = {
+          function(server_name)
+            require('lspconfig')[server_name].setup({
+              capabilities = capabilities,
+            })
+          end,
+          ['tailwindcss'] = function(server_name)
+            require('lspconfig')[server_name].setup({
+              capabilities = capabilities,
+              root_dir = require('lspconfig.util').root_pattern(
+                "tailwind.config.js",
+                "tailwind.config.cjs",
+                "postcss.config.js"
+              ),
+            })
+          end,
+          ['jsonls'] = function(server_name)
+            require('lspconfig')[server_name].setup({
+              capabilities = capabilities,
+              settings = {
+                json = {
+                  schemas = require('schemastore').json.schemas(),
+                  validate = { enable = true },
                 },
-                schemas = require("schemastore").yaml.schemas(),
               },
-            },
-          })
-        end,
-        ['clangd'] = function()
-          require('lspconfig').clangd.setup({
-            cmd = {
-              "clangd",
-              "--offset-encoding=utf-16",
-              "--compile-commands-dir=target/debug",
-            },
-          })
-        end,
-        ['rust_analyzer'] = function()
-          require('lspconfig').rust_analyzer.setup({
-            settings = {
-              ['rust-analyzer'] = {
-                checkOnSave = {
-                  allFeatures = true,
-                  overrideCommand = {
-                    'cargo', 'clippy', '--workspace', '--message-format=json',
-                    '--all-targets', '--all-features'
+            })
+          end,
+          ['yamlls'] = function(server_name)
+            require('lspconfig')[server_name].setup({
+              capabilities = capabilities,
+              settings = {
+                yaml = {
+                  hover = true,
+                  completion = true,
+                  validate = true,
+                  schemaStore = {
+                    enable = true,
+                    url = "https://www.schemastore.org/api/json/catalog.json",
+                  },
+                  schemas = require("schemastore").yaml.schemas(),
+                },
+              },
+            })
+          end,
+          ['clangd'] = function()
+            require('lspconfig').clangd.setup({
+              capabilities = capabilities,
+              cmd = {
+                "clangd",
+                "--offset-encoding=utf-16",
+                "--compile-commands-dir=target/debug",
+              },
+            })
+          end,
+          ['rust_analyzer'] = function()
+            require('lspconfig').rust_analyzer.setup({
+              capabilities = capabilities,
+              settings = {
+                ['rust-analyzer'] = {
+                  checkOnSave = {
+                    allFeatures = true,
+                    overrideCommand = {
+                      'cargo', 'clippy', '--workspace', '--message-format=json',
+                      '--all-targets', '--all-features'
+                    }
                   }
                 }
               }
-            }
-          })
-        end,
+            })
+          end,
+        }
       }
-    },
+    end,
   },
   {
     "neovim/nvim-lspconfig",
