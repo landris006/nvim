@@ -103,7 +103,17 @@ return {
     "nvim-pack/nvim-spectre",
     build = false,
     cmd = "Spectre",
-    opts = { open_cmd = "noswapfile vnew" },
+    opts = {
+      open_cmd = "noswapfile vnew",
+      mapping = {
+        ['send_to_qf'] = {
+          map = "<C-q>",
+          cmd = "<cmd>lua require('spectre.actions').send_to_qf()<CR>",
+          desc = "send all items to quickfix"
+        },
+      }
+
+    },
     -- stylua: ignore
     keys = {
       { "<leader>sr", function() require("spectre").open() end, desc = "Replace in files (Spectre)" },
