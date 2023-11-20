@@ -10,6 +10,10 @@ return {
             find = "No information available",
           },
           opts = { skip = true }
+        },
+        {
+          view = "notify",
+          filter = { event = 'msg_showmode' }
         }
       },
       lsp = {

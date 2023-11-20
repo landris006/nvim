@@ -5,12 +5,9 @@ return {
   opts = {
     events = { "BufReadPost", "BufWritePost", "InsertLeave", "BufNewFile" },
     linters_by_ft = {
-      typescript = { "eslint" },
-      typescriptreact = { "eslint" },
-      html = { "eslint" },
-      css = { "eslint" },
       lua = { "luacheck" },
       cpp = { "cpplint" },
+      python = { "mypy", "ruff" }
     }
   },
   config = function(_, opts)

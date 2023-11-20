@@ -13,6 +13,7 @@ return {
       markdown = { "prettierd" },
       lua = { "stylua" },
       cpp = { "clang_format" },
+      python = { "black" },
     },
     format_on_save = function()
       if vim.g.autoformat_disable then

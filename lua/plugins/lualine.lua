@@ -60,9 +60,6 @@ return {
 
   event = "BufReadPost",
   opts = {
-    options = {
-      theme = "palenight",
-    },
     sections = {
       lualine_x = {
         {
