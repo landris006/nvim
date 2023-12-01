@@ -123,9 +123,27 @@ return {
       { "folke/neodev.nvim", config = true },
       "mason.nvim",
       "williamboman/mason-lspconfig.nvim",
+      "nvim-cmp"
     },
-
     event = "BufReadPost",
+    init = function()
+      vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+        vim.lsp.diagnostic.on_publish_diagnostics, {
+          underline = true,
+          virtual_text = {
+            spacing = 4,
+            prefix = "",
+          },
+          signs = true,
+          update_in_insert = false,
+        }
+      )
+
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+      require("lspconfig").glsl_analyzer.setup({
+        capabilities = capabilities,
+      })
+    end
   },
   {
     "github/copilot.vim",
