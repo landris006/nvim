@@ -19,9 +19,9 @@ vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
 -- Move text
-vim.keymap.set("n", "<A-j>", ":m .+1<CR>==")        -- move line up(n)
-vim.keymap.set("n", "<A-k>", ":m .-2<CR>==")        -- move line down(n)
-vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv")    -- move line up(v)
-vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv")    -- move line down(v)
+vim.keymap.set("n", "<A-j>", ":m .+1<CR>==")     -- move line up(n)
+vim.keymap.set("n", "<A-k>", ":m .-2<CR>==")     -- move line down(n)
+vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv") -- move line up(v)
+vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv") -- move line down(v)
 
-vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>") -- move line down(v)
+vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>")
