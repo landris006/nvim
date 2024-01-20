@@ -33,7 +33,7 @@ return {
       { "<leader>st", "<cmd>Telescope live_grep<cr>",                                desc = "Grep" },
       { '<leader>s"', "<cmd>Telescope registers<cr>",                                desc = "Registers" },
       { "<leader>sa", "<cmd>Telescope autocommands<cr>",                             desc = "Auto Commands" },
-      { "<leader>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>",                desc = "Buffer" },
+      { "<leader>ss", "<cmd>Telescope current_buffer_fuzzy_find<cr>",                desc = "Buffer" },
       { "<leader>sc", "<cmd>Telescope command_history<cr>",                          desc = "Command History" },
       { "<leader>sC", "<cmd>Telescope commands<cr>",                                 desc = "Commands" },
       { "<leader>sh", "<cmd>Telescope help_tags<cr>",                                desc = "Help Pages" },
