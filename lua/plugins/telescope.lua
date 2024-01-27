@@ -39,6 +39,7 @@ return {
       { "<leader>sh", "<cmd>Telescope help_tags<cr>",                                desc = "Help Pages" },
       { "<leader>sH", "<cmd>Telescope highlights<cr>",                               desc = "Search Highlight Groups" },
       { "<leader>sk", "<cmd>Telescope keymaps<cr>",                                  desc = "Key Maps" },
+      { "<leader>sn", "<cmd>Telescope notify<cr>",                                   desc = "Key Maps" },
 
       { "<leader>sM", "<cmd>Telescope man_pages<cr>",                                desc = "Man Pages" },
       { "<leader>sm", "<cmd>Telescope marks<cr>",                                    desc = "Jump to Mark" },

@@ -38,6 +38,13 @@ return {
     }
   },
   {
+    "rcarriga/nvim-notify",
+    event = "VeryLazy",
+    opts = {
+      render = "compact",
+    }
+  },
+  {
     "stevearc/dressing.nvim",
     lazy = true,
     init = function()
