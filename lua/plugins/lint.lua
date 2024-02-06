@@ -7,7 +7,8 @@ return {
     linters_by_ft = {
       lua = { "luacheck" },
       cpp = { "cpplint" },
-      python = { "mypy", "ruff" }
+      python = { "mypy", "ruff" },
+      go = { "golangcilint" },
     }
   },
   config = function(_, opts)

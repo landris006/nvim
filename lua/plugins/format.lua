@@ -14,6 +14,7 @@ return {
       lua = { "stylua" },
       cpp = { "clang_format" },
       python = { "black" },
+      go = { "goimports", "gofmt", "golines" },
     },
     format_on_save = function()
       if vim.g.autoformat_disable then
