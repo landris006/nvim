@@ -6,7 +6,7 @@ return {
     formatters_by_ft = {
       typescript = { "prettierd" },
       typescriptreact = { "prettierd" },
-      html = { "prettierd" },
+      html = { "prettier" },
       css = { "prettierd" },
       json = { "prettierd" },
       yaml = { "prettierd" },
@@ -24,7 +24,7 @@ return {
       return {
         lsp_fallback = true,
         async = false,
-        timeout_ms = 500,
+        timeout_ms = 2000,
       }
     end,
   },
@@ -35,7 +35,7 @@ return {
         require("conform").format({
           lsp_fallback = true,
           async = false,
-          timeout_ms = 500,
+          timeout_ms = 2000,
         })
       end,
       mode = { "n", "v" },
