@@ -41,8 +41,8 @@ return {
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
       return {
-        automatic_installation = true,
-        ensure_installed = { "clangd", "cmake", "rust_analyzer", "jsonls", "yamlls" },
+        automatic_installation = false,
+        -- ensure_installed = { "clangd", "cmake", "rust_analyzer", "jsonls", "yamlls", "taplo", "yamlls" },
         handlers = {
           function(server_name)
             require('lspconfig')[server_name].setup({
@@ -113,6 +113,18 @@ return {
               }
             })
           end,
+          ['nil_ls'] = function()
+            require('lspconfig').nil_ls.setup({
+              capabilities = capabilities,
+              settings = {
+                ['nil'] = {
+                  formatting = {
+                    command = {"nixpkgs-fmt"},
+                  }
+                }
+              }
+            })
+          end,
         }
       }
     end,
@@ -142,6 +154,23 @@ return {
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
       require("lspconfig").glsl_analyzer.setup({
         capabilities = capabilities,
+      })
+      require("lspconfig").wgsl_analyzer.setup({
+        capabilities = capabilities,
+      })
+      require('lspconfig').rust_analyzer.setup({
+        capabilities = capabilities,
+        settings = {
+          ['rust-analyzer'] = {
+            checkOnSave = {
+              allFeatures = true,
+              overrideCommand = {
+                'cargo', 'clippy', '--workspace', '--message-format=json',
+                '--all-targets', '--all-features'
+              }
+            }
+          }
+        }
       })
     end
   },
