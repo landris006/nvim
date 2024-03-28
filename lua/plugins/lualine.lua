@@ -61,6 +61,13 @@ return {
   event = "BufReadPost",
   opts = {
     sections = {
+      lualine_c = {
+        {
+          "filename",
+          path = 1,
+          color = { gui = "bold" },
+        }
+      },
       lualine_x = {
         {
           attached_clients,
