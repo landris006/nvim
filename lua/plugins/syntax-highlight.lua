@@ -14,7 +14,10 @@ return {
       require("nvim-treesitter.query_predicates")
     end,
     opts = {
-      highlight = { enable = true },
+      highlight = {
+        enable = true,
+        disable = { "csv" },
+      },
       indent = { enable = true },
       auto_install = true,
       ensure_installed = {
@@ -60,4 +63,23 @@ return {
   --     require("illuminate").configure(opts)
   --   end
   -- }
+  {
+    'cameron-wags/rainbow_csv.nvim',
+    config = true,
+    ft = {
+      'csv',
+      'tsv',
+      'csv_semicolon',
+      'csv_whitespace',
+      'csv_pipe',
+      'rfc_csv',
+      'rfc_semicolon'
+    },
+    cmd = {
+      'RainbowDelim',
+      'RainbowDelimSimple',
+      'RainbowDelimQuoted',
+      'RainbowMultiDelim'
+    }
+  }
 }
