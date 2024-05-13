@@ -9,11 +9,11 @@ local function attached_clients()
   local copilot_active = false
 
   for _, client in pairs(buf_clients) do
-    if client.name ~= "copilot" and client.name ~= "null-ls" then
+    if client.name ~= "GitHub Copilot" and client.name ~= "null-ls" then
       table.insert(buf_client_names, client.name)
     end
 
-    if client.name == "copilot" then
+    if client.name == "GitHub Copilot" then
       copilot_active = true
     end
   end
