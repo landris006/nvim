@@ -3,7 +3,7 @@ return {
 
   opts = {
     style = "night",
-    transparent = true,     -- Enable this to disable setting the background color
+    transparent = false,     -- Enable this to disable setting the background color
     terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
 
     styles = {
@@ -12,8 +12,8 @@ return {
       functions = {},
       variables = {},
       -- Background styles. Can be "dark", "transparent" or "normal"
-      sidebars = "transparent",       -- style for sidebars, see below
-      floats = "transparent",         -- style for floating windows
+      -- sidebars = "transparent",       -- style for sidebars, see below
+      -- floats = "transparent",         -- style for floating windows
     },
     sidebars = { "qf", "help" },      -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
     day_brightness = 0.3,             -- Adjusts the brightness of the colors of the **Day** style. Number between 0 and 1, from dull to vibrant colors

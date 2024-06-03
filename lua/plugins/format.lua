@@ -12,6 +12,7 @@ return {
       yaml = { "prettier" },
       markdown = { "prettier" },
       lua = { "stylua" },
+      c = { "clang_format" },
       cpp = { "clang_format" },
       python = { "black" },
       go = { "goimports", "gofmt", "golines" },

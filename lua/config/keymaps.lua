@@ -25,3 +25,7 @@ vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv") -- move line up(v)
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv") -- move line down(v)
 
 vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>")
+
+vim.keymap.set("n", "<leader>c", function() require("config.utils").buf_kill() end, {
+  desc = "Close buffer"
+})

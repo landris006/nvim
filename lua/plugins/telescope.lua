@@ -63,6 +63,7 @@ return {
           }
         },
         defaults = {
+          file_ignore_patterns = { ".git/", "node_modules/", "vendor/" },
           prompt_prefix = " ",
           selection_caret = " ",
           -- open files in the first window that is an actual file.
