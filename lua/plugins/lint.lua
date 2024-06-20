@@ -10,6 +10,9 @@ return {
       cpp = { "cpplint" },
       python = { "mypy", "ruff" },
       go = { "golangcilint" },
+      javasctipt = { "eslint" },
+      typescript = { "eslint" },
+      html = { "eslint" },
     }
   },
   config = function(_, opts)
