@@ -1,7 +1,25 @@
 return {
   "lewis6991/gitsigns.nvim",
 
-  config = true,
+  opts = {
+    signs = {
+      add          = { text = '+' },
+      change       = { text = '~' },
+      delete       = { text = '-' },
+      topdelete    = { text = '‾' },
+      changedelete = { text = '~' },
+      untracked    = { text = '┆' },
+    },
+    signs_staged = {
+      add          = { text = '+' },
+      change       = { text = '~' },
+      delete       = { text = '-' },
+      topdelete    = { text = '‾' },
+      changedelete = { text = '~' },
+      untracked    = { text = '┆' },
+    },
+    signs_staged_enable = true,
+  },
   event = "BufReadPost",
   keys = {
     { "<leader>gj", "<cmd>lua require('gitsigns').next_hunk()<CR>",       desc = "Preview next hunk" },
