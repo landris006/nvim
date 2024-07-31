@@ -19,6 +19,7 @@ return {
       untracked    = { text = '┆' },
     },
     signs_staged_enable = true,
+    attach_to_untracked = true,
   },
   event = "BufReadPost",
   keys = {

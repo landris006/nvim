@@ -3,7 +3,14 @@ return {
 
   event = { "BufReadPost", "BufNewFile" },
   opts = {
+    formatters = {
+      prettier = {
+        prepend_args = { "--single-quote", "--trailing-comma", "all", "--print-width", "120" },
+      }
+    },
     formatters_by_ft = {
+      javascript = { "prettier" },
+      javascriptreact = { "prettier" },
       typescript = { "prettier" },
       typescriptreact = { "prettier" },
       html = { "prettier" },
