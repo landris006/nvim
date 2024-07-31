@@ -151,6 +151,12 @@ return {
         }
       )
 
+      local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
+      for type, icon in pairs(signs) do
+        local hl = "DiagnosticSign" .. type
+        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+      end
+
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
       require("lspconfig").glsl_analyzer.setup({
         capabilities = capabilities,
