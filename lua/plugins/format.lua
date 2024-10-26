@@ -5,19 +5,19 @@ return {
   opts = {
     formatters = {
       prettier = {
-        prepend_args = { "--single-quote", "--trailing-comma", "all", "--print-width", "120" },
+        prepend_args = { "--single-quote", "--trailing-comma", "all" },
       }
     },
     formatters_by_ft = {
-      javascript = { "prettier" },
-      javascriptreact = { "prettier" },
-      typescript = { "prettier" },
-      typescriptreact = { "prettier" },
-      html = { "prettier" },
-      css = { "prettier" },
-      json = { "prettier" },
-      yaml = { "prettier" },
-      markdown = { "prettier" },
+      javascript = { "prettierd", "prettier" },
+      javascriptreact = { "prettierd", "prettier" },
+      typescript = { "prettierd", "prettier" },
+      typescriptreact = { "prettierd", "prettier" } ,
+      html = { "prettierd", "prettier" },
+      css = { "prettierd", "prettier" },
+      json = { "prettierd", "prettier" },
+      yaml = { "prettierd", "prettier" },
+      markdown = { "prettierd", "prettier" },
       lua = { "stylua" },
       c = { "clang_format" },
       cpp = { "clang_format" },
