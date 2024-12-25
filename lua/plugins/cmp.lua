@@ -18,6 +18,10 @@ local duplicates = {
   luasnip = 1,
 }
 
+local function first_to_upper(str)
+    return (str:gsub("^%l", string.upper))
+end
+
 return {
   {
     "hrsh7th/nvim-cmp",
@@ -54,7 +58,9 @@ return {
               vim_item.abbr = string.sub(vim_item.abbr, 1, max_width - 1) .. require("config.utils").icons.ui.Ellipsis
             end
 
-            vim_item.kind = require("config.utils").icons.kind[vim_item.kind] .. " " .. vim_item.kind
+						vim_item.kind = (require("config.utils").icons.kind[first_to_upper(vim_item.kind)] or "")
+							.. " "
+							.. vim_item.kind
             vim_item.menu = source_names[entry.source.name]
             vim_item.dup = duplicates[entry.source.name]
                 or 0
