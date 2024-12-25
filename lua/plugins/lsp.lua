@@ -173,6 +173,26 @@ return {
 			})
 			require("lspconfig").rust_analyzer.setup({
 				capabilities = capabilities,
+				settings = {
+					["rust-analyzer"] = {
+						cargo = {
+							allFeatures = true,
+							loadOutDirsFromCheck = true,
+							runBuildScripts = true,
+						},
+						checkOnSave = {
+							allFeatures = true,
+							command = "clippy",
+							extraArgs = {
+								"--",
+								"--no-deps",
+								"-Dclippy::correctness",
+								"-Dclippy::complexity",
+								"-Wclippy::perf",
+							},
+						},
+					},
+				},
 			})
 			require("lspconfig").nginx_language_server.setup({
 				capabilities = capabilities,
