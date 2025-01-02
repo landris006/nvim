@@ -1,28 +1,74 @@
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 	callback = function(ev)
-		local opts = { buffer = ev.buf }
-		vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<cr>", opts)
+		local builtin = require("telescope.builtin")
+
+		vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<cr>", {
+			buffer = ev.buf,
+			desc = "Show LSP information",
+		})
 		vim.keymap.set("n", "gl", function()
 			vim.diagnostic.open_float(nil, { scope = "line" })
-		end, opts)
-		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-		vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-		vim.keymap.set("n", "gI", vim.lsp.buf.implementation, opts)
-		vim.keymap.set("n", "<leader>ls", vim.lsp.buf.signature_help, opts)
-		vim.keymap.set("n", "<leader>Wa", vim.lsp.buf.add_workspace_folder, opts)
-		vim.keymap.set("n", "<leader>Wr", vim.lsp.buf.remove_workspace_folder, opts)
+		end, {
+			buffer = ev.buf,
+			desc = "Open diagnostic float",
+		})
+
+		vim.keymap.set("n", "gd", builtin.lsp_definitions, {
+			buffer = ev.buf,
+			desc = "Go to definition",
+		})
+		vim.keymap.set("n", "K", vim.lsp.buf.hover, {
+			buffer = ev.buf,
+			desc = "Hover",
+		})
+		vim.keymap.set("n", "gI", builtin.lsp_implementations, {
+			buffer = ev.buf,
+			desc = "Go to implementation",
+		})
+		vim.keymap.set("n", "<leader>ls", vim.lsp.buf.signature_help, {
+			buffer = ev.buf,
+			desc = "Signature help",
+		})
+		vim.keymap.set("n", "<leader>Wa", vim.lsp.buf.add_workspace_folder, {
+			buffer = ev.buf,
+			desc = "Add workspace folder",
+		})
+		vim.keymap.set("n", "<leader>Wr", vim.lsp.buf.remove_workspace_folder, {
+			buffer = ev.buf,
+			desc = "Remove workspace folder",
+		})
 		vim.keymap.set("n", "<leader>Wl", function()
 			print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-		end, opts)
-		vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, opts)
-		vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, opts)
-		vim.keymap.set({ "n", "v" }, "<leader>la", vim.lsp.buf.code_action, opts)
-		vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+		end, {
+			buffer = ev.buf,
+			desc = "List workspace folders",
+		})
+		vim.keymap.set("n", "<leader>D", builtin.lsp_type_definitions, {
+			buffer = ev.buf,
+			desc = "Go to type definition",
+		})
+		vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, {
+			buffer = ev.buf,
+			desc = "Rename",
+		})
+		vim.keymap.set({ "n", "v" }, "<leader>la", vim.lsp.buf.code_action, {
+			buffer = ev.buf,
+			desc = "Code actions",
+		})
+		vim.keymap.set("n", "gr", builtin.lsp_references, {
+			buffer = ev.buf,
+			desc = "Find references",
+		})
 
-		vim.keymap.set("n", "<leader>lj", vim.diagnostic.goto_next, opts)
-		vim.keymap.set("n", "<leader>lk", vim.diagnostic.goto_prev, opts)
+		vim.keymap.set("n", "<leader>lj", vim.diagnostic.goto_next, {
+			buffer = ev.buf,
+			desc = "Next diagnostic",
+		})
+		vim.keymap.set("n", "<leader>lk", vim.diagnostic.goto_prev, {
+			buffer = ev.buf,
+			desc = "Prev diagnostic",
+		})
 	end,
 })
 
@@ -126,6 +172,7 @@ return {
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			{ "folke/neodev.nvim", config = true },
+			"nvim-telescope/telescope.nvim",
 			"mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 			"nvim-cmp",
