@@ -14,7 +14,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			desc = "Open diagnostic float",
 		})
 
-		vim.keymap.set("n", "gd", builtin.lsp_definitions, {
+		vim.keymap.set("n", "gd", vim.lsp.buf.definition, {
 			buffer = ev.buf,
 			desc = "Go to definition",
 		})
@@ -44,7 +44,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			buffer = ev.buf,
 			desc = "List workspace folders",
 		})
-		vim.keymap.set("n", "<leader>D", builtin.lsp_type_definitions, {
+		vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, {
 			buffer = ev.buf,
 			desc = "Go to type definition",
 		})
