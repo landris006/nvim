@@ -244,6 +244,9 @@ return {
 			require("lspconfig").nginx_language_server.setup({
 				capabilities = capabilities,
 			})
+			require("lspconfig").hls.setup({
+				capabilities = capabilities,
+			})
 			require("lspconfig").nixd.setup({
 				capabilities = capabilities,
 				cmd = { "nixd" },

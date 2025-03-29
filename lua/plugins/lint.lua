@@ -8,7 +8,7 @@ return {
 			lua = { "luacheck" },
 			c = { "cpplint" },
 			cpp = { "cpplint" },
-			python = { "mypy", "ruff" },
+			python = { "mypy" },
 			go = { "golangcilint" },
 			-- rust = { "clippy" },
 			-- javascript = { "eslint_d", "eslint" },
