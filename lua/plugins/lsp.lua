@@ -190,11 +190,24 @@ return {
 					update_in_insert = false,
 				})
 
-			local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
-			for type, icon in pairs(signs) do
-				local hl = "DiagnosticSign" .. type
-				vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-			end
+      vim.diagnostic.config({
+        severity_sort = true,
+        virtual_text = true,
+        signs = {
+          text = {
+            [vim.diagnostic.severity.INFO] = "",
+            [vim.diagnostic.severity.HINT] = "󰌶",
+            [vim.diagnostic.severity.WARN] = "󰀪",
+            [vim.diagnostic.severity.ERROR] = "󰅚",
+          },
+          numhl = {
+            [vim.diagnostic.severity.INFO] = "DiagnosticInfo",
+            [vim.diagnostic.severity.HINT] = "DiagnosticHint",
+            [vim.diagnostic.severity.WARN] = "DiagnosticWarn",
+            [vim.diagnostic.severity.ERROR] = "DiagnosticError",
+          },
+        }
+      })
 
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			require("lspconfig").glsl_analyzer.setup({
