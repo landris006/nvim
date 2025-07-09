@@ -247,6 +247,10 @@ return {
       require("lspconfig").nginx_language_server.setup({
         capabilities = capabilities,
       })
+      require("lspconfig").qmlls.setup({
+        capabilities = capabilities,
+        cmd = { "qmlls", "-E" },
+      })
       require("lspconfig").hls.setup({
         capabilities = capabilities,
       })
@@ -264,6 +268,19 @@ return {
           },
         },
       })
+      require("lspconfig").svelte.setup {
+        capabilities = capabilities,
+        on_attach = function(client, bufnr)
+          vim.api.nvim_create_autocmd("BufWritePost", {
+            pattern = { "*.js", "*.ts" },
+            group = vim.api.nvim_create_augroup("svelte_ondidchangetsorjsfile", { clear = true }),
+            callback = function(ctx)
+              -- Here use ctx.match instead of ctx.file
+              client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
+            end,
+          })
+        end,
+      }
     end,
   },
 }
