@@ -1,3 +1,5 @@
+local vim = vim
+
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspConfig", {}),
   callback = function(ev)
@@ -22,14 +24,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
       buffer = ev.buf,
       desc = "Hover",
     })
-    vim.keymap.set("n", "gI", builtin.lsp_implementations, {
-      buffer = ev.buf,
-      desc = "Go to implementation",
-    })
-    vim.keymap.set("n", "<leader>ls", vim.lsp.buf.signature_help, {
-      buffer = ev.buf,
-      desc = "Signature help",
-    })
     vim.keymap.set("n", "<leader>Wa", vim.lsp.buf.add_workspace_folder, {
       buffer = ev.buf,
       desc = "Add workspace folder",
@@ -48,19 +42,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
       buffer = ev.buf,
       desc = "Go to type definition",
     })
-    vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, {
-      buffer = ev.buf,
-      desc = "Rename",
-    })
-    vim.keymap.set({ "n", "v" }, "<leader>la", vim.lsp.buf.code_action, {
-      buffer = ev.buf,
-      desc = "Code actions",
-    })
-    vim.keymap.set("n", "gr", builtin.lsp_references, {
-      buffer = ev.buf,
-      desc = "Find references",
-    })
-
     vim.keymap.set("n", "<leader>lj", vim.diagnostic.goto_next, {
       buffer = ev.buf,
       desc = "Next diagnostic",
@@ -231,6 +212,10 @@ return {
         capabilities = capabilities,
         filetypes = { "html", "css", "elixir", "eelixir", "heex" },
       })
+      -- require("lspconfig").eslint.setup({
+      --   capabilities = capabilities,
+      --   filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx", "vue", "svelte", "astro", "htmlangular" }
+      -- })
       require("lspconfig").rust_analyzer.setup({
         capabilities = capabilities,
         settings = {
