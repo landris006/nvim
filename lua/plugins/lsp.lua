@@ -201,6 +201,9 @@ return {
         capabilities = capabilities,
         cmd = { "elixir-ls" },
       })
+      require("lspconfig").gleam.setup({
+        capabilities = capabilities,
+      })
       require("lspconfig").html.setup({
         capabilities = capabilities,
         filetypes = { "html", "heex", "eex", "templ" },

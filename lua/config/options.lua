@@ -28,3 +28,5 @@ vim.opt.splitkeep        = "topline"
 vim.opt.undofile         = true
 vim.opt.undolevels       = 10000
 vim.opt.wrap             = false
+vim.opt.swapfile         = false
+-- vim.opt.conceallevel     = 1

@@ -58,6 +58,19 @@ vim.api.nvim_create_autocmd(
     "BufRead",
   },
   {
+    pattern = "*.md",
+    callback = function()
+      vim.opt.conceallevel = 1
+    end
+  }
+)
+
+vim.api.nvim_create_autocmd(
+  {
+    "BufNewFile",
+    "BufRead",
+  },
+  {
     pattern = "*.rasi",
     callback = function()
       vim.bo.filetype = "rasi"
