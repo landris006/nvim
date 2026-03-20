@@ -57,7 +57,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
   pattern = { "*.hl", "hypr*.conf" },
   callback = function(event)
-    print(string.format("starting hyprls for %s", vim.inspect(event)))
     vim.bo.filetype = "hyprlang"
     vim.lsp.start({
       name = "hyprlang",
@@ -191,9 +190,9 @@ return {
       })
 
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
-      require("lspconfig").glsl_analyzer.setup({
-        capabilities = capabilities,
-      })
+      -- require("lspconfig").glsl_analyzer.setup({
+      --   capabilities = capabilities,
+      -- })
       require("lspconfig").wgsl_analyzer.setup({
         capabilities = capabilities,
       })
@@ -209,6 +208,13 @@ return {
         filetypes = { "html", "heex", "eex", "templ" },
       })
       require("lspconfig").clangd.setup({
+        capabilities = capabilities,
+      })
+      require("lspconfig").neocmake.setup({
+        capabilities = capabilities,
+        cmd = { "neocmakelsp", "stdio" },
+      })
+      require("lspconfig").ts_ls.setup({
         capabilities = capabilities,
       })
       require("lspconfig").emmet_ls.setup({
@@ -241,6 +247,13 @@ return {
       })
       require("lspconfig").hls.setup({
         capabilities = capabilities,
+      })
+      require("lspconfig").tinymist.setup({
+        capabilities = capabilities,
+        settings = {
+          formatterMode = "typstyle",
+          exportPdf = "never"
+        }
       })
       require("lspconfig").nixd.setup({
         capabilities = capabilities,

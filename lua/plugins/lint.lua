@@ -6,10 +6,11 @@ return {
     events = { "BufReadPost", "BufWritePost", "InsertLeave", "BufNewFile" },
     linters_by_ft = {
       lua = { "luacheck" },
-      c = { "cpplint" },
-      cpp = { "cpplint" },
+      -- c = { "cpplint" },
+      -- cpp = { "cpplint" },
       python = { "mypy" },
       go = { "golangcilint" },
+      cmake = { "cmakelint" },
       -- rust = { "clippy" },
       -- javascript = { "eslint_d", "eslint" },
       -- typescript = { "eslint_d", "eslint" },
