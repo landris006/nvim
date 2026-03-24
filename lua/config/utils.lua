@@ -1,6 +1,6 @@
 return {
   debounce = function(ms, fn)
-    local timer = vim.loop.new_timer()
+    local timer = vim.uv.new_timer()
     return function(...)
       local argv = { ... }
       timer:start(ms, 0, function()
@@ -44,7 +44,7 @@ return {
         else
           return
         end
-      elseif api.nvim_buf_get_option(bufnr, "buftype") == "terminal" then
+      elseif vim.bo[bufnr].buftype == "terminal" then
         choice = fn.confirm(fmt([[Close "%s"?]], bufname), "&Yes\n&No\n&Cancel")
         if choice == 1 then
           force = true

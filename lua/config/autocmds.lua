@@ -43,39 +43,9 @@ vim.api.nvim_create_autocmd(
     "BufRead",
   },
   {
-    pattern = "*.wgsl",
-    callback = function()
-      vim.bo.filetype = "wgsl"
-      -- local buf = vim.api.nvim_get_current_buf()
-      -- vim.api.nvim_buf_set_option(buf, "filetype", "wgsl")
-    end
-  }
-)
-
-vim.api.nvim_create_autocmd(
-  {
-    "BufNewFile",
-    "BufRead",
-  },
-  {
     pattern = "*.md",
     callback = function()
       vim.opt.conceallevel = 1
-    end
-  }
-)
-
-vim.api.nvim_create_autocmd(
-  {
-    "BufNewFile",
-    "BufRead",
-  },
-  {
-    pattern = "*.rasi",
-    callback = function()
-      vim.bo.filetype = "rasi"
-      -- local buf = vim.api.nvim_get_current_buf()
-      -- vim.api.nvim_buf_set_option(buf, "filetype", "wgsl")
     end
   }
 )

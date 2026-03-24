@@ -1,13 +1,10 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
-
     cmd = "Telescope",
-    version = false, -- telescope did only one release, so use HEAD for now
+    version = false,
     dependencies = {
-      {
-        "nvim-lua/plenary.nvim",
-      },
+      "nvim-lua/plenary.nvim",
       {
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "make",
@@ -15,7 +12,7 @@ return {
       },
     },
     keys = {
-      { "<leader>,",  "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>", desc = "Switch Buffer", },
+      { "<leader>,",  "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>", desc = "Switch Buffer" },
       { "<leader>:",  "<cmd>Telescope command_history<cr>",                          desc = "Command History" },
       { "<leader>fb", "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>", desc = "Buffers" },
       { "<leader>ff", "<cmd>Telescope find_files<cr>",                               desc = "Find Files (root dir)" },
@@ -39,8 +36,6 @@ return {
       { "<leader>sh", "<cmd>Telescope help_tags<cr>",                                desc = "Help Pages" },
       { "<leader>sH", "<cmd>Telescope highlights<cr>",                               desc = "Search Highlight Groups" },
       { "<leader>sk", "<cmd>Telescope keymaps<cr>",                                  desc = "Key Maps" },
-      { "<leader>sn", "<cmd>Telescope notify<cr>",                                   desc = "Key Maps" },
-
       { "<leader>sM", "<cmd>Telescope man_pages<cr>",                                desc = "Man Pages" },
       { "<leader>sm", "<cmd>Telescope marks<cr>",                                    desc = "Jump to Mark" },
       { "<leader>so", "<cmd>Telescope vim_options<cr>",                              desc = "Options" },
@@ -48,30 +43,15 @@ return {
     },
     opts = function()
       local actions = require("telescope.actions")
-
-      local open_with_trouble = function(...)
-        return require("trouble.providers.telescope").open_with_trouble(...)
-      end
-      local open_selected_with_trouble = function(...)
-        return require("trouble.providers.telescope").open_selected_with_trouble(...)
-      end
-
       return {
         pickers = {
-          find_files = {
-            hidden = true
-          }
+          find_files = { hidden = true },
         },
         defaults = {
           file_ignore_patterns = { ".git/", "node_modules/", "vendor/" },
-          prompt_prefix = " ",
-          selection_caret = " ",
-          -- open files in the first window that is an actual file.
-          -- use the current window if no other window is available.
           get_selection_window = function()
             local wins = vim.api.nvim_list_wins()
             table.insert(wins, 1, vim.api.nvim_get_current_win())
-
             for _, win in ipairs(wins) do
               local buf = vim.api.nvim_win_get_buf(win)
               if vim.bo[buf].buftype == "" then
@@ -86,9 +66,6 @@ return {
               ["<C-k>"] = actions.move_selection_previous,
               ["<C-n>"] = actions.cycle_history_next,
               ["<C-p>"] = actions.cycle_history_prev,
-
-              ["<c-t>"] = open_with_trouble,
-              ["<a-t>"] = open_selected_with_trouble,
               ["<C-f>"] = actions.preview_scrolling_down,
               ["<C-b>"] = actions.preview_scrolling_up,
             },
@@ -108,18 +85,15 @@ return {
     opts = {
       open_cmd = "noswapfile vnew",
       mapping = {
-        ['send_to_qf'] = {
+        ["send_to_qf"] = {
           map = "<C-q>",
           cmd = "<cmd>lua require('spectre.actions').send_to_qf()<CR>",
-          desc = "send all items to quickfix"
+          desc = "send all items to quickfix",
         },
-      }
-
+      },
     },
-    -- stylua: ignore
     keys = {
       { "<leader>sr", function() require("spectre").open() end, desc = "Replace in files (Spectre)" },
     },
-  }
-
+  },
 }
